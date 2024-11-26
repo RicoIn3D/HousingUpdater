@@ -11,7 +11,7 @@ public class TenancyController : Controller
 {
     private readonly ApplicationDbContext _context;
     private readonly ILogger<TenancyController> _logger;
-    private const int CLIENT_ID = 1; //Client ID in the [??].[dbo].[Clients]
+    private const int CLIENT_ID = 2; //Client ID in the [??].[dbo].[Clients]
 
     const int CompanyColumn = 1;
     const int DepartmentColumn = 2;
@@ -132,7 +132,7 @@ public class TenancyController : Controller
                             DateCreated = DateTime.Now,
                             DateUpdated = DateTime.Now,
                             UserId = "FromExcelImporter" };
-                        _context.Addresses.Add(add);
+                        _context.Аddresses.Add(add);
                         
                         await _context.SaveChangesAsync();
                         add.AddressId = add.Id;
