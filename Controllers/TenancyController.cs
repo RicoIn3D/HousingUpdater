@@ -17,7 +17,7 @@ public class TenancyController : Controller
     const int DepartmentColumn = 2;
     const int TenancyNumberColumn = 3;
     const int AddressColumn = 4;
-    const int DepositColumn = 5;
+    const int DepositColumn = 6;
     const int RentColumn = 7;
     const int BbrSizeColumn = 8;
     const int GrossSizeColumn = 9;
@@ -123,7 +123,8 @@ public class TenancyController : Controller
                     }
                     else
                     {
-                        var add = new Address {
+                        var add = new Address
+                        {
                             StreetAndLocation = address,
                             ZipCity = "7430 Ikast",//postalCodeAndCity,
                             ClientId = CLIENT_ID,
@@ -131,9 +132,10 @@ public class TenancyController : Controller
                             AddressId = 0,
                             DateCreated = DateTime.Now,
                             DateUpdated = DateTime.Now,
-                            UserId = "FromExcelImporter" };
+                            UserId = "FromExcelImporter"
+                        };
                         _context.Аddresses.Add(add);
-                        
+
                         await _context.SaveChangesAsync();
                         add.AddressId = add.Id;
                         await _context.SaveChangesAsync();
@@ -160,7 +162,7 @@ public class TenancyController : Controller
                             ClientId = CLIENT_ID
                         };
                         //ten.AddressList.Add(add);
-                        
+
                         ten.AddressId = add.Id;
                         _context.Tenancies.Add(ten);
                         await _context.SaveChangesAsync();
@@ -177,9 +179,9 @@ public class TenancyController : Controller
 
         if (tenanciesToUpdate.Any())
         {
-              _context.Tenancies.UpdateRange(tenanciesToUpdate);
-              
-              
+            _context.Tenancies.UpdateRange(tenanciesToUpdate);
+            await _context.SaveChangesAsync();
+
         }
         return Ok("Tenancies updated successfully.");
     }
